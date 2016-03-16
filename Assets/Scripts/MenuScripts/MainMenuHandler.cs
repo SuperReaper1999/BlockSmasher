@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour {
 
@@ -7,12 +8,10 @@ public class MainMenuHandler : MonoBehaviour {
     private GameObject mainMenu;
     [SerializeField]
     private GameObject settingsMenu;
-    [SerializeField]
-    private GameObject levelSelect;
 
     // Start is called on initialization.
     void Start () {
-        HandleMenuSwitch(true, false, false);
+        HandleMenuSwitch(true, false);
     }
 	
 	// Update is called once per frame.
@@ -24,25 +23,24 @@ public class MainMenuHandler : MonoBehaviour {
     void HandleInput() {
         if (Input.GetKey("escape") && !mainMenu.activeSelf)
         {
-            HandleMenuSwitch(true, false, false);
+            HandleMenuSwitch(true, false);
         }
     }
 
     // Called when the Play button is pressed.
     public void PlayButton() {
-        HandleMenuSwitch(false, false, true);
+        SceneManager.LoadScene("LevelSelect_1");
     }
 
     // Called when the Settings button is pressed.
     public void SettingsButton() {
-        HandleMenuSwitch(false, true, false);
+        HandleMenuSwitch(false, true);
     }
 
     // Handles switching menus on/off
-    void HandleMenuSwitch(bool mainM, bool settingsM, bool levelS) {
+    void HandleMenuSwitch(bool mainM, bool settingsM) {
         mainMenu.SetActive(mainM);
         settingsMenu.SetActive(settingsM);
-        levelSelect.SetActive(levelS);
     }
 
     // Called when the Exit button is pressed.
