@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour {
@@ -12,6 +11,10 @@ public class MainMenuHandler : MonoBehaviour {
     // Start is called on initialization.
     void Start () {
         HandleMenuSwitch(true, false);
+        if (!PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            PlayerPrefs.SetInt("CurrentLevel", 1);
+        }
     }
 	
 	// Update is called once per frame.
@@ -29,7 +32,7 @@ public class MainMenuHandler : MonoBehaviour {
 
     // Called when the Play button is pressed.
     public void PlayButton() {
-        SceneManager.LoadScene("LevelSelect_1");
+        SceneManager.LoadScene("Level " + PlayerPrefs.GetInt("CurrentLevel"));
     }
 
     // Called when the Settings button is pressed.

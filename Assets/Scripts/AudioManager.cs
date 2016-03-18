@@ -32,12 +32,10 @@ public class AudioManager : MonoBehaviour {
             AudioListener.pause = false;
             soundButton.isOn = false;
         }
-        Debug.Log(AudioListener.volume);
     }
 
     // Boolean that returns the value of the sound toggle.
     public bool soundEnabled() {
-        Debug.Log("Sound button is " + !soundButton.isOn);
         return soundButton.isOn;
     }
 
