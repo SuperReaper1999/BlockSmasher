@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System;
 
 /// <summary>
 /// For info on how to use see

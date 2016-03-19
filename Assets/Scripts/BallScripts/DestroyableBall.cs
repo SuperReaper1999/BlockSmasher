@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public abstract class DestroyableBall : MonoBehaviour {
 
@@ -38,7 +37,7 @@ public abstract class DestroyableBall : MonoBehaviour {
                 OnDestruction();
                 Destroy(gameObject);
                 isWaiting = false;
-                timeToWait = 1F;
+                timeToWait = 1.0f;
             }
         }
     }

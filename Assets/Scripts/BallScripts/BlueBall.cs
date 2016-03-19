@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System;
 
 /// <summary>
 /// For info on how to use see
@@ -15,6 +13,7 @@ public class BlueBall : DestroyableBall
 
     }
 
+    
     public override void SetBallsColor()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color32(0, 100, 255, 255);
