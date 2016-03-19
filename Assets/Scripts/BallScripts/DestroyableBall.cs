@@ -4,6 +4,7 @@ public abstract class DestroyableBall : MonoBehaviour {
 
     private float timeToWait = 1F;
     private bool isWaiting = false;
+    public BallSetupHandler bSetupHand;
 
     /// <summary>
     /// This method should be used for any special behaviour the ball has when being destroyed.
@@ -24,6 +25,7 @@ public abstract class DestroyableBall : MonoBehaviour {
     void Start()
     {
         SetBallsColor();
+        bSetupHand = GameObject.FindWithTag("_GM_").GetComponent<BallSetupHandler>();
     }
 
     // Update is called once per frame.

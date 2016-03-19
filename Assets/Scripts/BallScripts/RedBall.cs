@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class RedBall : DestroyableBall
 {
-    private BallSetupHandler bSetupHand;
 
     public override void OnDestruction()
     {
@@ -21,6 +20,6 @@ public class RedBall : DestroyableBall
 
     public override void OnHit()
     {
-        bSetupHand = GameObject.Find("_Game_Manager_").GetComponent<BallSetupHandler>();
+        
     }
 }

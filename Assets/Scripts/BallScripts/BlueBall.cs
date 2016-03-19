@@ -13,7 +13,6 @@ public class BlueBall : DestroyableBall
 
     }
 
-    
     public override void SetBallsColor()
     {
         gameObject.GetComponent<SpriteRenderer>().color = new Color32(0, 100, 255, 255);

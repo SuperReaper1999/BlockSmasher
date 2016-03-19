@@ -12,10 +12,23 @@ public class PlayerInputHandler : MonoBehaviour
     private float speed = 0.25F;
     private float TouchTime;
 
+    private GameResultHandler gResHand;
+
     // Start is called on initialization.
     void Start()
     {
+        gResHand = GameObject.FindGameObjectWithTag("_GM_").GetComponent<GameResultHandler>();
+    }
 
+    void shoot()
+    {
+        if (cannonBallCount > 0)
+        {
+            gResHand.numOfActiveCannonBalls++;
+            cannonBallCount--;
+            GameObject cannonBall = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
+            cannonBall.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+        }
     }
 
     // Update is called once per frame
@@ -24,8 +37,7 @@ public class PlayerInputHandler : MonoBehaviour
     #if UNITY_EDITOR
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            GameObject cannonBall = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
-            cannonBall.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+            shoot();
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -47,11 +59,9 @@ public class PlayerInputHandler : MonoBehaviour
 
             if (Input.GetTouch(0).phase == TouchPhase.Ended)
             {
-                if (Time.time - TouchTime <= 0.2 && cannonBallCount <= 10)
+                if (Time.time - TouchTime <= 0.2)
                 {
-                    cannonBallCount--;
-                    GameObject cannonBall =  (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
-                    cannonBall.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+                    shoot();
                 }
             }
 
