@@ -4,7 +4,7 @@ public class GameResultHandler : MonoBehaviour {
 
     private bool isWon = false;
     private bool isLost = false;
-    public int numOfActiveCannonBalls = 0;
+    public int numOfActiveCannonBalls;
 
     private PlayerInputHandler player;
     private BallSetupHandler ballSetup;
@@ -20,21 +20,6 @@ public class GameResultHandler : MonoBehaviour {
     void Start () {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerInputHandler>();
         ballSetup = GameObject.FindGameObjectWithTag("_GM_").GetComponent<BallSetupHandler>();
-    }
-
-    // Sets the correct UI to be active.
-    void ResultUiHandler(bool Win) {
-        gameUI.SetActive(true);
-        if (Win)
-        {
-            WinUI.SetActive(true);
-            LoseUI.SetActive(false);
-        }
-        else
-        {
-            WinUI.SetActive(false);
-            LoseUI.SetActive(true);
-        }
     }
 
 	// Fixed Update is called once per fixed interval.
@@ -62,5 +47,13 @@ public class GameResultHandler : MonoBehaviour {
         {
             ResultUiHandler(false);
         }
+    }
+
+    // Sets the correct UI to be active.
+    void ResultUiHandler(bool Result)
+    {
+        gameUI.SetActive(true);
+        WinUI.SetActive(Result);
+        LoseUI.SetActive(!Result);
     }
 }

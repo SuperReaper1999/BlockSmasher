@@ -9,20 +9,20 @@ public class PlayerInputHandler : MonoBehaviour
     private GameObject cannonBallPrefab;
 
     public int cannonBallCount;
+
     private float speed = 0.25F;
     private float TouchTime;
 
     private GameResultHandler gResHand;
 
-    // Start is called on initialization.
-    void Start()
-    {
+    // Used for things that need to be called after start from another object.
+    public void Init() {
         gResHand = GameObject.FindGameObjectWithTag("_GM_").GetComponent<GameResultHandler>();
+        cannonBallCount = Mathf.Max(1, gResHand.gameObject.GetComponent<BallSetupHandler>().numOfRed - 1);
     }
 
-    void shoot()
-    {
-        if (cannonBallCount > 0)
+    void shoot() {
+        if (cannonBallCount > 0 && gResHand.numOfActiveCannonBalls == 0)
         {
             gResHand.numOfActiveCannonBalls++;
             cannonBallCount--;
@@ -32,8 +32,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
     #if UNITY_EDITOR
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
