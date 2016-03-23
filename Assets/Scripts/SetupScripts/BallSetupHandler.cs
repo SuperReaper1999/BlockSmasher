@@ -13,9 +13,7 @@ public class BallSetupHandler : MonoBehaviour {
     public int numOfRed;
     private int numOfSpecial;
 
-
-
-    // Use this for initialization
+    // Called on initialization.
     void Start () {
         PlayerInputHandler player = GameObject.FindWithTag("Player").GetComponent<PlayerInputHandler>();
         System.Random rand = new System.Random();
@@ -35,7 +33,17 @@ public class BallSetupHandler : MonoBehaviour {
         {
             go.tag = "BlueBall";
             go.AddComponent<BlueBall>();
+            numOfBlank--;
+            numOfBlue++;
         }
+        if (numOfRed > 6)
+        {
+            numOfSpecial++;
+            int num = rand.Next(ballList.Count);
+            ballList[num].tag = "SpecialBall";
+            ballList[num].AddComponent<SpecialBall>();
+        }
+        Debug.Log("The number of balls total is : " + (numOfBlue + numOfRed + numOfSpecial));
         player.Init();
     }
 }

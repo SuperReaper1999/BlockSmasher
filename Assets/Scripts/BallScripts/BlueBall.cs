@@ -5,8 +5,7 @@ using UnityEngine;
 /// <see cref="DestroyableBall"/>
 /// </summary>
 
-public class BlueBall : DestroyableBall
-{
+public class BlueBall : DestroyableBall {
 
     public override void OnDestruction()
     {

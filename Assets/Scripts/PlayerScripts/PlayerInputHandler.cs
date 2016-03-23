@@ -15,15 +15,35 @@ public class PlayerInputHandler : MonoBehaviour
 
     private GameResultHandler gResHand;
 
+    private PlayerPowerupHandler powerUpHand;
+
     // Used for things that need to be called after start from another object.
     public void Init() {
+        powerUpHand = GetComponent<PlayerPowerupHandler>();
         gResHand = GameObject.FindGameObjectWithTag("_GM_").GetComponent<GameResultHandler>();
-        cannonBallCount = Mathf.Max(1, gResHand.gameObject.GetComponent<BallSetupHandler>().numOfRed - 1);
+        cannonBallCount = Mathf.Max(2, gResHand.gameObject.GetComponent<BallSetupHandler>().numOfRed - 1);
     }
 
-    void shoot() {
+    // Handles shooting.
+    void Shoot() {
         if (cannonBallCount > 0 && gResHand.numOfActiveCannonBalls == 0)
         {
+            if (powerUpHand.powerUpIsActive)
+            {
+                powerUpHand.UseCurrentPowerUp();
+                if (powerUpHand.powerUps[powerUpHand.powerUpNumber] == "TripleShot")
+                {
+                    gResHand.numOfActiveCannonBalls = 3;
+                    cannonBallCount--;
+                    GameObject cannonBall1 = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
+                    GameObject cannonBall2 = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position + new Vector3(-0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+                    GameObject cannonBall3 = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position + new Vector3(0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+                    cannonBall1.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+                    cannonBall2.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+                    cannonBall3.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+                    return;
+                }
+            }
             gResHand.numOfActiveCannonBalls++;
             cannonBallCount--;
             GameObject cannonBall = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
@@ -36,7 +56,7 @@ public class PlayerInputHandler : MonoBehaviour
     #if UNITY_EDITOR
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
-            shoot();
+            Shoot();
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -60,7 +80,7 @@ public class PlayerInputHandler : MonoBehaviour
             {
                 if (Time.time - TouchTime <= 0.2)
                 {
-                    shoot();
+                    Shoot();
                 }
             }
 
