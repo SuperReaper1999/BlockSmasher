@@ -1,10 +1,14 @@
 fileFormatVersion: 2
 guid: 38add761bea65274989e10cb3ab6dbb6
-timeCreated: 1458307249
+timeCreated: 1459171406
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blueBallSound: {fileID: 8300000, guid: 2680646eea4fd854bad3fc5629329b89, type: 3}
+  - redBallSound: {instanceID: 0}
+  - specialBallSound: {instanceID: 0}
+  - bSetupHand: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

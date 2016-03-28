@@ -28,6 +28,7 @@ public class PlayerInputHandler : MonoBehaviour
     void Shoot() {
         if (cannonBallCount > 0 && gResHand.numOfActiveCannonBalls == 0)
         {
+            GetComponent<AudioSource>().Play();
             if (powerUpHand.powerUpIsActive)
             {
                 powerUpHand.UseCurrentPowerUp();

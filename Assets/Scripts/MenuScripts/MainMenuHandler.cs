@@ -6,7 +6,7 @@ public class MainMenuHandler : MonoBehaviour {
     [SerializeField]
     private GameObject mainMenu;
     [SerializeField]
-    private GameObject settingsMenu;
+    private GameObject creditsMenu;
 
     // Start is called on initialization.
     void Start () {
@@ -36,15 +36,15 @@ public class MainMenuHandler : MonoBehaviour {
         SceneManager.LoadScene("Level " + PlayerPrefs.GetInt("CurrentLevel"));
     }
 
-    // Called when the Settings button is pressed.
-    public void SettingsButton() {
+    // Called when the Credits button is pressed.
+    public void CreditsButton() {
         HandleMenuSwitch(false, true);
     }
 
     // Handles switching menus on/off
-    void HandleMenuSwitch(bool mainM, bool settingsM) {
+    void HandleMenuSwitch(bool mainM, bool CreditsM) {
         mainMenu.SetActive(mainM);
-        settingsMenu.SetActive(settingsM);
+        creditsMenu.SetActive(CreditsM);
     }
 
     // Called when the Exit button is pressed.

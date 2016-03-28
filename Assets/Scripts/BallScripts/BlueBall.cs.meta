@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: f92c1fcd508217e4b8454a0bd0490da9
-timeCreated: 1458308112
+timeCreated: 1459171161
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - ballSound: {instanceID: 0}
+  - bSetupHand: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

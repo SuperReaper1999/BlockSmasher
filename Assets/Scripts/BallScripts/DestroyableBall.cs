@@ -2,8 +2,9 @@ using UnityEngine;
 
 public abstract class DestroyableBall : MonoBehaviour {
 
-    private float timeToWait = 1F;
+    private float timeToWait = 0.75F;
     private bool isWaiting = false;
+    public AudioClip ballSound;
     public BallSetupHandler bSetupHand;
 
     /// <summary>
@@ -39,7 +40,7 @@ public abstract class DestroyableBall : MonoBehaviour {
                 OnDestruction();
                 Destroy(gameObject);
                 isWaiting = false;
-                timeToWait = 1.0f;
+                timeToWait = 0.75f;
             }
         }
     }
@@ -50,6 +51,7 @@ public abstract class DestroyableBall : MonoBehaviour {
         if (!isWaiting)
         {
             isWaiting = true;
+            GetComponent<AudioSource>().Play();
             OnHit();
             SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0.25f);
