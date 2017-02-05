@@ -15,6 +15,8 @@ public class GameResultHandler : MonoBehaviour {
     private GameObject WinUI;
     [SerializeField]
     private GameObject LoseUI;
+    [SerializeField]
+    private GameObject PauseUI;
 
     // Use this for initialization
     void Start () {
@@ -28,11 +30,13 @@ public class GameResultHandler : MonoBehaviour {
         {
             isLost = true;
             ResultHandler();
+            Debug.Log("Lose");
         }
         else if (numOfActiveCannonBalls == 0 && ballSetup.numOfRed == 0 && !isWon)
         {
             isWon = true;
             ResultHandler();
+            Debug.Log("Win");
         }
     }
 
@@ -52,7 +56,9 @@ public class GameResultHandler : MonoBehaviour {
     // Sets the correct UI to be active.
     void ResultUiHandler(bool Result)
     {
+        player.enabled = false;
         gameUI.SetActive(true);
+        PauseUI.SetActive(false);
         WinUI.SetActive(Result);
         LoseUI.SetActive(!Result);
     }

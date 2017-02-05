@@ -10,7 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public int cannonBallCount;
 
-    private float speed = 0.25F;
+    private float speed = 0.3F;
     private float TouchTime;
 
     private GameResultHandler gResHand;

@@ -44,11 +44,13 @@ public class AudioManager : MonoBehaviour {
         {
             AudioListener.volume = 1;
             PlayerPrefs.SetInt("volume", 1);
+            Debug.Log("Volume on");
         }
         else
         {
             AudioListener.volume = 0;
             PlayerPrefs.SetInt("volume", 0);
+            Debug.Log("Volume off");
         }
     }
 }

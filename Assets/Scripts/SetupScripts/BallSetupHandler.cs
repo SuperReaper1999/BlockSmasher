@@ -22,6 +22,7 @@ public class BallSetupHandler : MonoBehaviour {
 
     // Called on initialization.
     void Start () {
+        numOfRed = 0;
         PlayerInputHandler player = GameObject.FindWithTag("Player").GetComponent<PlayerInputHandler>();
         System.Random rand = new System.Random();
         ballList.AddRange(GameObject.FindGameObjectsWithTag("BlankBall"));
