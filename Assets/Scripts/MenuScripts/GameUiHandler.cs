@@ -58,6 +58,11 @@ public class GameUiHandler : MonoBehaviour {
         Time.timeScale = 1;
     }
 
+    public void ResetGame() {
+        PlayerPrefs.SetInt("CurrentLevel", 1);
+        SceneManager.LoadScene("Level " + PlayerPrefs.GetInt("CurrentLevel"));
+    }
+
     // Fixed Update is called once per fixed interval.
     void FixedUpdate() {
         ballCountText.text = " = " + playerHandler.cannonBallCount.ToString();

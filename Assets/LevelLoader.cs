@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour {
     public ColorToPrefab[] colorToPrefab;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         if (levelMap != null)
         {
             LoadMap();

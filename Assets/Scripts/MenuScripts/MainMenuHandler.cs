@@ -33,7 +33,9 @@ public class MainMenuHandler : MonoBehaviour {
 
     // Called when the Play button is pressed.
     public void PlayButton() {
-        PlayerPrefs.SetInt("CurrentLevel", 1);
+        if (!PlayerPrefs.HasKey("CurrentLevel")) {
+            PlayerPrefs.SetInt("CurrentLevel", 1);
+        }
         SceneManager.LoadScene("Level " + PlayerPrefs.GetInt("CurrentLevel"));
     }
 
