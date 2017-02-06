@@ -10,7 +10,7 @@ public class MainMenuHandler : MonoBehaviour {
 
     // Start is called on initialization.
     void Start () {
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = 60;
         HandleMenuSwitch(true, false);
         if (!PlayerPrefs.HasKey("CurrentLevel"))
         {
