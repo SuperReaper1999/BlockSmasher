@@ -11,6 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int cannonBallCount;
 
     private float speed = 0.3F;
+    private float cannonBallSpeed = 8f;
     private float TouchTime;
 
     private GameResultHandler gResHand;
@@ -21,12 +22,12 @@ public class PlayerInputHandler : MonoBehaviour
     public void Init() {
         powerUpHand = GetComponent<PlayerPowerupHandler>();
         gResHand = GameObject.FindGameObjectWithTag("_GM_").GetComponent<GameResultHandler>();
-        cannonBallCount = Mathf.Max(2, gResHand.gameObject.GetComponent<BallSetupHandler>().numOfRed - 1);
+        cannonBallCount = Mathf.Max(2, gResHand.gameObject.GetComponent<BallSetupHandler>().numOfRed + 1);
     }
 
     // Handles shooting.
     void Shoot() {
-        if (cannonBallCount > 0 && gResHand.numOfActiveCannonBalls == 0)
+        if (cannonBallCount > 0 && gResHand.numOfActiveCannonBalls <= 1)
         {
             GetComponent<AudioSource>().Play();
             if (powerUpHand.powerUpIsActive)
@@ -36,19 +37,19 @@ public class PlayerInputHandler : MonoBehaviour
                 {
                     gResHand.numOfActiveCannonBalls = 3;
                     cannonBallCount--;
-                    GameObject cannonBall1 = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
-                    GameObject cannonBall2 = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position + new Vector3(-0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
-                    GameObject cannonBall3 = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position + new Vector3(0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
-                    cannonBall1.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
-                    cannonBall2.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
-                    cannonBall3.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+                    GameObject cannonBall1 = (GameObject)Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
+                    GameObject cannonBall2 = (GameObject)Instantiate(cannonBallPrefab, endOfCannon.position + new Vector3(-0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+                    GameObject cannonBall3 = (GameObject)Instantiate(cannonBallPrefab, endOfCannon.position + new Vector3(0.5f, 0, 0), Quaternion.Euler(0, 0, 0));
+                    cannonBall1.GetComponent<Rigidbody2D>().velocity = -transform.up * cannonBallSpeed;
+                    cannonBall2.GetComponent<Rigidbody2D>().velocity = -transform.up * cannonBallSpeed;
+                    cannonBall3.GetComponent<Rigidbody2D>().velocity = -transform.up * cannonBallSpeed;
                     return;
                 }
             }
             gResHand.numOfActiveCannonBalls++;
             cannonBallCount--;
-            GameObject cannonBall = (GameObject)GameObject.Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
-            cannonBall.GetComponent<Rigidbody2D>().velocity = -transform.up * 5;
+            GameObject cannonBall = (GameObject)Instantiate(cannonBallPrefab, endOfCannon.position, Quaternion.Euler(0, 0, 0));
+            cannonBall.GetComponent<Rigidbody2D>().velocity = -transform.up * cannonBallSpeed;
         }
     }
 

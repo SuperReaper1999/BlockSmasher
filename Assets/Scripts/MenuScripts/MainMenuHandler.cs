@@ -36,6 +36,11 @@ public class MainMenuHandler : MonoBehaviour {
         if (!PlayerPrefs.HasKey("CurrentLevel")) {
             PlayerPrefs.SetInt("CurrentLevel", 1);
         }
+        if (PlayerPrefs.GetInt("CurrentLevel") > SceneManager.sceneCountInBuildSettings-1)
+        {
+            Debug.Log("Current level was higher than number of levels, resetting progress.");
+            PlayerPrefs.SetInt("CurrentLevel", 1);
+        }
         SceneManager.LoadScene("Level " + PlayerPrefs.GetInt("CurrentLevel"));
     }
 
